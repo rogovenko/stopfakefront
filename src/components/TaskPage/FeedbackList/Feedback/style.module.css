@@ -1,0 +1,27 @@
+.mainContainer {
+  padding: 25px;
+  border: 1px solid #E3E1E3;
+  box-shadow: 0px 0px 26px 4px rgba(0, 0, 0, 0.13);
+  border-radius: 24px;
+  margin-bottom: 40px;
+}
+
+.userContainer{
+  display: flex;
+}
+
+.avatar{
+  width: 100px;
+  height: 100px;
+  margin-right: 40px;
+  margin-left: 20px;
+}
+
+.comment{
+  display: flex;
+  flex-direction: column;
+}
+
+.comment p{
+  font-size: 20px;
+}

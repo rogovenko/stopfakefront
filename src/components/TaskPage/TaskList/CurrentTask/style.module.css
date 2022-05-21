@@ -1,0 +1,150 @@
+.currentContainer0{
+  display: flex;
+  flex-direction: column;
+}
+
+.currentContainer2{
+  margin-top: 50px;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0px 0px 26px rgba(0, 0, 0, 0.13);
+}
+
+.currentContainer{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.imgLot{
+  position: relative;
+  height: 700px;
+  width: 700px;
+  border-radius: 20px;
+  padding: 140px;
+  box-shadow: 0px 0px 26px rgba(0, 0, 0, 0.13);
+}
+
+.currentTaskHeader{
+  font-size: 50px;
+}
+
+.currentTaskContainer{
+  width: 900px;
+}
+
+.currentTaskContainer h3{
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.ava{
+  width: 60px;
+}
+
+.avaSpan{
+  margin-left: 10px;
+}
+
+.devide{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.devide p{
+  font-size: 24px;
+}
+
+.devide1{
+  border-bottom: 2px black solid;
+  width: 100px;
+  position:absolute;
+}
+
+.devide2{
+  border-bottom: 2px #555555 solid;
+  opacity: 0.5;
+}
+
+.count{
+  color: #58DC5D;
+}
+
+.description{
+  font-size: 24px;
+}
+
+.countBefore{
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.btnText{
+  margin-left: 5px;
+  margin-right: 10px;
+  color: white;
+}
+
+.join2{
+  height: 60px;
+  width: 250px;
+  margin-top: 40px;
+  background: linear-gradient(94.97deg, #ff0505 0%, #ff6d6d 100%);
+  border-radius: 8px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+}
+
+.search{
+  border-radius: 8px;
+  width: 250px;
+  height: 60px;
+  border: #64E408 solid 1px;
+}
+
+.search1{
+  margin-left: 20px;
+}
+
+
+.search2{
+  position:relative;
+  width: 80px;
+  margin-left: 80px;
+  margin-top: 17px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style:dashed;
+  border-color: #64E408;
+  text-align: center;
+  outline:none;
+}
+
+.btnGroup{
+  margin-top: 50px;
+  display: flex;
+  
+}
+
+.currentContainer3{
+  margin-top: 70px;
+}
+
+.currentContainer3 h1{
+  margin-left: 40px;
+  margin-bottom: 40px;
+}
+
+.enter2{
+  opacity: 30%;
+  margin-top: 10px;
+  margin-left: 25px;
+  height: 60px;
+  width: 60px;
+  border: #555555 solid 1px;
+  background: none;
+  border-radius: 8px;
+}

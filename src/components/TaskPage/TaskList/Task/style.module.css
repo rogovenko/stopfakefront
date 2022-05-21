@@ -1,0 +1,75 @@
+
+.cardLots{
+  color: #555555;
+  border: 1px solid #E3E3E3;
+  box-shadow: 0px 0px 26px rgba(0, 0, 0, 0.13);
+  border-radius: 24px;
+  padding: 25px;
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+}
+
+.cardLots img{
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.cardLots h3{
+  font-size: 14px;
+}
+
+.cardLots p{
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+.spanAdd{
+  color: #58DC5D;
+}
+
+.join2{
+  margin-top: 10px;
+  height: 60px;
+  width: 260px;
+  background: linear-gradient(94.97deg, #04CE9B 0%, #64E408 100%);
+  border-radius: 8px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+}
+
+.enter2{
+  margin-top: 10px;
+  margin-left: 25px;
+  height: 60px;
+  width: 60px;
+  border: #555555 solid 1px;
+  background: none;
+  border-radius: 8px;
+}
+
+.btnGroup2{
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkOff{
+  text-decoration:none;
+  color: inherit;
+}
+
+.linkOff:hover 
+{
+  text-decoration:none;
+  color: inherit;
+}
+
+.btnText{
+  margin-left: 5px;
+  margin-right: 10px;
+  color: white;
+}

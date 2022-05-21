@@ -1,0 +1,14 @@
+tr{
+  border-bottom: 1px solid #ddd;
+  font-size: 24px;
+  height: 80px;
+}
+
+tr:nth-child(even) {
+  background-color: #b4ffb63a;
+  
+}
+
+td{
+  padding-left: 20px;
+}

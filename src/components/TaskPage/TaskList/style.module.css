@@ -1,0 +1,10 @@
+.taskListContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.noTask {
+  font-size: large;
+}
+
