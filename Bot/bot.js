@@ -7,7 +7,7 @@ const {
 require('dotenv').config()
 
 // Инициализация бота с помощью Telegraf
-const bot = new Telegraf('5261615068:AAGXgA1xnmUarvXZF3OyWKkUaErpf49eZ88')
+const bot = new Telegraf('')
 
 const web_link = 'https://cool-quokka-c05cee.netlify.app/'
 
