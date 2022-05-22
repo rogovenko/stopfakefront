@@ -11,75 +11,43 @@ export const allTasks = () => (dispatch) => {
     let data = [
       {
         id: 1,
-        title: 'Греческая ваза',
-        category: 'Антиквариат',
-        description: 'Ваза I в до н.э., растоможена. Достал со дна политик.',
-        deadline: '2022-04-24 16:30:00',
-        image: '/img/lot1.png',
-        isDone: false,
+        title: 'ВСУ устроили провокацию в подконтрольном им поселке Николаевка, есть жертвы',
+        category: 'Политика',
+        image: '/img/news1.jpeg',
         status: 1,
-        owner: 1,
-        worker: null,
-        createdAt: '2022-01-15 02:00:00',
-        updatedAt: '2022-01-15 02:00:00',
-        USER: {
-          name: 'Слава К.',
-          avatar: '/img/ava1.png'
-        }
+        createdAt: '2022-05-21 02:00:00',
+        updatedAt: '2022-05-21 02:00:00',
+        user: 1
       },
       {
         id: 2,
-        title: 'VW Golf VI GTI 2.0',
-        category: 'Автомобиль',
-        description: 'Культовый хотхэтч немецкой сборки на 245 л.с.',
-        deadline: '2022-04-24 16:30:00',
-        image: '/img/lot2.png',
-        isDone: false,
+        title: 'Газпром подтвердил остановку поставок газа в Финляндию',
+        category: 'Политика',
+        image: '/img/news2.jpeg',
         status: 1,
-        owner: 2,
-        worker: 6,
-        createdAt: '2022-01-17 02:00:00',
-        updatedAt: '2022-01-17 02:00:00',
-        USER: {
-          name: 'КФХ “АгроФуд”',
-          avatar: '/img/ava2.png'
-        }
+        createdAt: '2022-05-21 02:00:00',
+        updatedAt: '2022-05-21 02:00:00',
+        user: 2
       },
       {
         id: 3,
-        title: 'Коллекционная монета',
-        category: 'Антиквариат',
-        description: 'Швейцарская монета 20 раппенов 2011 года.',
-        deadline: '2022-04-24 16:30:00',
-        image: '/img/lot3.png',
-        isDone: false,
-        status: 3,
-        owner: 5,
-        worker: 7,
-        createdAt: '2022-01-19 02:00:00',
-        updatedAt: '2022-01-19 02:00:00',
-        USER: {
-          name: 'Anonimus #0570',
-          avatar: '/img/ava3.png'
-        }
+        title: 'ITF поддержала решение не начислять очки теннисистам на Уимблдоне',
+        category: 'Спорт',
+        image: '/img/news3.jpeg',
+        status: 1,
+        createdAt: '2022-05-21 02:00:00',
+        updatedAt: '2022-05-21 02:00:00',
+        user: 2
       },
       {
         id: 4,
-        title: 'BitMonkey NFT',
-        category: 'Антиквариат',
-        description: 'Известный NFT-токен на холсте маслом.',
-        deadline: '2022-04-24 16:30:00',
-        image: '/img/lot4.jpeg',
-        isDone: false,
-        status: 3,
-        owner: 5,
-        worker: 7,
-        createdAt: '2022-01-19 02:00:00',
-        updatedAt: '2022-01-19 02:00:00',
-        USER: {
-          name: 'Tesla, Inc.',
-          avatar: '/img/ava4.png'
-        }
+        title: 'Москва закрывает въезд в Россию для 963 американцев',
+        category: 'Политика',
+        image: '/img/news4.jpeg',
+        status: 1,
+        createdAt: '2022-05-21 02:00:00',
+        updatedAt: '2022-05-21 02:00:00',
+        user: 3
       },
     ]
     dispatch({

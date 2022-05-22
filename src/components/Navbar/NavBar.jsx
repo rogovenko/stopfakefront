@@ -8,7 +8,7 @@ import { CustomLink } from './CustomLink/CustomLink'
   const linksList = [
     {
       path: '/create',
-      label: 'Создать лот',
+      label: 'Создать новость',
       isUser: true,
       role: 2,
     },
@@ -20,7 +20,7 @@ import { CustomLink } from './CustomLink/CustomLink'
     },
     {
       path: '/tasks',
-      label: 'Лоты',
+      label: 'Новости',
       isUser: true,
       role: 3,
     },
@@ -30,18 +30,6 @@ import { CustomLink } from './CustomLink/CustomLink'
     //   isUser: true,
     //   role: 3,
     // },
-    {
-      path: '/tasks',
-      label: 'аукционы',
-      isUser: false,
-      role: false,
-    },
-    {
-      path: '/workers',
-      label: 'о сервисе',
-      isUser: false,
-      role: false,
-    },
     // {
     //   path: '/signin',
     //   label: 'Войти',

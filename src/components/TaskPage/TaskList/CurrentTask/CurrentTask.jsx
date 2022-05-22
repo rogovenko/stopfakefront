@@ -1,147 +1,214 @@
 import React, { useEffect, useState } from 'react'
 import style from './style.module.css'
-import Count from "./Count";
 
-import CommentList from '../../CommentList/CommentList'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import FeedbackList from '../../FeedbackList/FeebackList'
-import Chat from '../../../Chat/Chat'
 import { deleteTaskThunk } from '../../../../redux/actions/tasksAc'
-import { upTaskThunk } from '../../../../redux/actions/tasksAc';
 import { addCommentThunk } from '../../../../redux/actions/commentsAc';
-import CommentForm from '../../CommentList/CommentForm/CommentForm';
+import Comment from '../../CommentList/Comment/Comment';
 
 function CurrentTask() {
   const { id } = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [status, setStatus] = useState(1)
-  const user = useSelector((state) => state.user)
   const tasks = useSelector(state => state.tasks)
   const task = tasks.find((el) => el.id === +id);
-  console.log('TASK', task)
+
+  const reviews = useSelector(state => state.comments);
+
+  const [isEdit, setIsEdit] = useState(false)
+  const [comment, setComment] = useState('');
+  const [source, setSource] = useState('');
+  const [select, setSelect] = useState('')
+  const [highlight, setHighlight] = useState('')
+
+  let cre = task.createdAt.split(' ');
+  let temp1 = cre[1].split(':')
+  let creDate = temp1[0] + ':' + temp1[1]
+  let upd = task.updatedAt.split(' ');
+  let temp2 = upd[1].split(':')
+  let updDate = temp2[0] + ':' + temp2[1]
+  
+
+
+  
+    let data = {
+      text: "\n    Росатом, которому исполняется 15 лет, стал одним из российских технологических лидеров,\n     и необходимо сохранить эту тенденцию. Об этом заявил президент РФ Владимир Путин \n     на встрече с руководителем госкорпорации Алексеем Лихачевым\n    ",
+      source: "Новая Газета",
+      editions: [
+        {
+          subStart: 0,
+          subEnd: 42,
+        },
+        {
+          subStart: 94,
+          subEnd: 110,
+        },
+        {
+          subStart: 164,
+          subEnd: 178,
+        },      
+
+      ],  
+    }
+    
+    let temp = {
+      text: 'assaffsf'
+    }
+
+
+  const handleEdit = () => {
+    setIsEdit(true);
+  }
+
+  const handleSend = (e) => {
+    e.preventDefault()
+    let selection = highlight
+    var start = data.text.indexOf(selection);
+    var end = start + selection.length;
+    console.log('SEND', comment, source, select, highlight)
+    console.log('HELLO', selection, start, end)
+    if(highlight == undefined){
+      highlight = null
+      start = null
+      end = null
+    }
+    dispatch(addCommentThunk({
+      id: 4,
+      task_id: 1,
+      type: +select,
+      sub: highlight,
+      subStart: start,
+      subEnd: end,
+      source: 'Источник',
+      slink: source,
+      comment: comment,
+      author: 'Анонимно',
+    }))
+    setSource('')
+    setComment('')
+    setSelect('')
+    setHighlight('')
+    setIsEdit(false);
+  }
+
+  const handleCancel = () => {
+    setSource('')
+    setComment('')
+    setSelect('')
+    setIsEdit(false);
+    console.log('CANCEL')
+  }
+
+  const handleHighlight = () => {
+    setHighlight(window.getSelection().toString())
+    console.log('HIGH', highlight)
+  }
+
+  const selectionHandler = () => {
+    console.log('CLICK')
+  }
+
+  let result = [];
+
+  for(let i = 0; i < reviews.length; i++){
+    if(reviews.highlight === null) continue;
+    if(reviews[i].subStart === 0){
+      let sub2 = data.text.substring((reviews[i].subStart), reviews[i].subEnd);
+      result.push(<button onClick={selectionHandler} data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover" className={style.textStyle}>{sub2}</button>)
+      let sub = data.text.substring((reviews[i].subEnd), reviews[i+1].subStart);
+      result.push(<span className={style.textStyle2}>{sub}</span>)
+      continue;
+    }
+    if(i === reviews.length - 1){
+      let sub2 = data.text.substring((reviews[i].subStart), reviews[i].subEnd);
+      result.push(<button onClick={selectionHandler} className={style.textStyle}>{sub2}</button>)
+      let sub = data.text.substring((reviews[i].subEnd), data.text.length);
+      result.push(<span className={style.textStyle2}>{sub}</span>)
+    } else {
+      let sub2 = data.text.substring((reviews[i].subStart), reviews[i].subEnd);
+      result.push(<button onClick={selectionHandler} className={style.textStyle}>{sub2}</button>)
+      let sub = data.text.substring((reviews[i].subEnd), reviews[i+1].subStart);
+      result.push(<span className={style.textStyle2}>{sub}</span>)
+    }
+  }
 
   useEffect(() => {
-    if (task) {
-      setStatus(task.status)
-    }
-  }, [tasks])
+ 
+  }, [reviews])
+  
 
-  const clickHandler = () => {
-    dispatch(deleteTaskThunk(id))
-    navigate('/')
-  }
 
-  const handleMatch = () => {
-    console.log('HELLO')
-    dispatch(upTaskThunk(id))
-  }
+  useEffect(() => {
+    
+  }, [isEdit])
+  
+  useEffect(() => {
+    
 
-  console.log('HEY', task)
-
+  }, [highlight])
   return (
-    <>
-      {task &&
-
-        (
-        <div className={style.currentContainer0}>
-
-
-        <div className={style.currentContainer}>
-          <div className={style.imgLot}>
-            <img src={task.image} alt=''/>
-          </div>
-          <div>
-            <div className={style.currentTaskContainer}>
-
-
-              <h1 className={style.currentTaskHeader}>{task.title}</h1>
-              <h3>ID {task.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{task.createdAt}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;редактировать</h3>
-              <br/>
-              <p>Продавец</p>
-              <div>
-                <img className={style.ava} src={task.USER.avatar}/>
-                <span className={style.avaSpan}>{task.USER.name}</span>
-              </div>
-
-              <div className={style.devide}>
-                <p>Описание</p>
-                <div className={style.devide1}></div>
-                <div className={style.devide2}></div>
-              </div>
-
-              <p className={style.description}>{task.description}... Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing.</p>
-
-            {task.status == 1 && (
-              <>
-                <p className={style.countBefore}>До окончания аукциона: &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className={style.count}>
-                    <Count deadline = {task.deadline} id = {id}/>
-                  </span>
-                </p>
-                <CommentForm />
-              </>
-            )}
-
-            {task.status == 2 && (
-              <>
-                <button type="button" className={style.join2}>
-                    <span className={style.btnText}>Аукцион завершен!</span>
-              </button>
-              </>
-            )}
-
-              {/* <div className={style.btnGroup}>
-              <div className={style.search}>
-                <div>
-                  <input className={style.search2} type="text"/>
-                </div>
-              </div>  
-
-                <button  type="button" className={style.join2}>
-                  <span className={style.btnText}>Предложить цену</span>
-                </button>
-              </div> */}
-
-             
-            </div>
-     
-             
-              {/* {user !== null && task.owner === user.id && (
-                <button onClick={clickHandler} className={style.btn}>Удалить задачу</button>
-                )} */}
-          </div>
+    <div className={style.taskContainer}>
+      <div className={style.cardLots}>
+        <img src={task.image} alt=''/>
+        <h2>{task.title}</h2>
+        <h3><span className={style.spanAdd}>категория&nbsp;&nbsp;|&nbsp;&nbsp;</span>{task.category}</h3>
+        <div className={style.date}>
+          <p>{cre[0]}&nbsp;&nbsp;{creDate}&nbsp;&nbsp;
+            <span>(обновлено: {upd[0]}&nbsp;&nbsp;{updDate})</span>
+          </p>
         </div>
-        <div className={style.currentContainer2}>
-
-
-                    <h1>Ставки</h1>
-                    <CommentList />
-
-
-        </div>
-        <div className={style.currentContainer3}>
-          <h1>Комментарии</h1>
-          <FeedbackList />
-        </div>
-
-      </div>)
-      }
-        <button onClick={handleMatch} type="button" className={style.enter2}>
-          <span className={style.btnIcon}>
-            <svg width="29" height="24" viewBox="0 0 29 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.0469 3.51541C27.9812 -7.90046 36.9184 16.2607 14.0469 23.5C-8.82462 16.2607 0.112541 -7.90046 14.0469 3.51541Z" fill="url(#paint0_linear_37_1731)"/>
-              <defs>
-              <linearGradient id="paint0_linear_37_1731" x1="2.67987" y1="1.62847" x2="21.1021" y2="22.5803" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#58DC5D"/>
-              <stop offset="1" stop-color="#04CE9B"/>
-              </linearGradient>
-              </defs>
-            </svg>
-          </span>
+      </div>
+      <div className={style.article}>
+        <text onMouseUp={handleHighlight}>
+          {result}
+        </text>
+      </div>
+      {!isEdit && (
+        <button onClick={handleEdit} type="button" className={style.enter2}>
+                <span className={style.btnText}>дополнить / опровергнуть</span>
         </button>
-    </>
+      )}
+      {isEdit && (
+        <form onSubmit={handleSend} className={style.editContainer}>
+          <div className={style.btnHighCont}>
+            <div>
+              Выберите фрагмент
+            <p>(нажмите кнопку справа, если ваш фрагмент не появился)</p>
+            </div>
+          <button onClick={handleHighlight} type="button" className={style.enter3}>
+                  <span className={style.btnText}><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                    <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                    <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                  </svg></span>
+          </button>
+          </div>
+          {highlight && (
+            <p className={style.editContainerHigh}>{highlight}</p>
+          )}
+          <input value={comment} onChange={(e) => setComment(e.target.value)} placeholder='комментарий'></input>
+          <input value={source} onChange={(e) => setSource(e.target.value)}placeholder='ссылка на источник'></input>
+          <select value={select} onChange={(e) => setSelect(e.target.value)} aria-label="Edit mode">
+            <option selected>Выберите действие</option>
+            <option value="0">Дополнить</option>
+            <option value="1">Опровергнуть</option>
+            <option value="2">Комментировать</option>
+          </select>
+          <button onClick={handleSend} type="submit" className={style.enter2}>
+                  <span className={style.btnText}>Отправить</span>
+          </button>
+          <button onClick={handleCancel} type="button" className={style.enter2}>
+                  <span className={style.btnText}>Отмена</span>
+          </button>
+        </form>
+      )}
+
+      {reviews.map((el) => <Comment key={el.id} {...el} />)}
+      <div>
+      </div>
+
+      
+    </div>
   )
 }
 
