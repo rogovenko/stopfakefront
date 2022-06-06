@@ -8,4 +8,4 @@
 Нажать на синюю кнопку слева внизу.
 <br/>
 
-<img width="600" alt="StopFakeScreen" src="/public/img/stopfake.gif">
+<img alt="StopFakeScreen" src="/public/img/stopfake.gif">
