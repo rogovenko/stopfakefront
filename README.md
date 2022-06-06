@@ -7,3 +7,5 @@
 <br/>
 Нажать на синюю кнопку слева внизу.
 <br/>
+
+<img width="1424" alt="StopFakeScreen" src="/public/img/stopfake.gif">
